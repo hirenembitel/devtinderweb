@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../utils/userSlice.js';
 import { useNavigate } from 'react-router-dom'; // <-- Import here
 import { API_BASE_URL } from '../utils/constants.js';
 
 const Login = () => {
+  const user = useSelector((state) => state.user.user); // Use useSelector to access user state
+  const navigate = useNavigate(); // Initialize useNavigate here  
   const [email, setEmail] = React.useState('hiren.kava@gmail.com');
   const [password, setPassword] = React.useState('Hiren@123');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // <-- Initialize here
+  //const navigate = useNavigate(); // <-- Initialize here
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,8 +30,8 @@ const Login = () => {
         navigate('/'); // <-- Navigate after login
       })
       .catch(error => {
-        console.error('Login failed:', error);
-        alert('Login failed. Please check your credentials.' + error.message);
+        setError(error.response ? error.response.data.message : 'Login failed');
+        //alert('Login failed. Please check your credentials.' + error.response.data.message);
       });
   }
 
@@ -65,6 +69,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <p className='text-red-500'>{error}</p>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
