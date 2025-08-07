@@ -1,0 +1,15 @@
+https://vite.dev/guide/
+
+https://tailwindcss.com/docs/installation/using-vite
+
+https://daisyui.com/docs/install/react/
+
+ROUTER
+https://reactrouter.com/7.7.1/start/framework/installation
+
+REDUX TOOLKIT
+https://redux-toolkit.js.org/introduction/getting-started
+
+to create empty structure for react
+command name : rafce
+ 
