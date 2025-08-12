@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_BASE_URL } from './constants.js';
+//import { removeRequestById } from './requestSlice.jsx';
 
 export const fetchFeeds = createAsyncThunk (
     'feeds/fetchFeeds',
@@ -28,6 +29,13 @@ const feedSlice = createSlice({
     reducers:{
         setPage(state, action) {
             state.page = action.payload;
+            console.log("called state page change");
+        },
+        removeFeedRequestById(state,action) {
+            const { page, id } = action.payload;
+            if (state.feedsByPage[page]) {
+                state.feedsByPage[page] = state.feedsByPage[page].filter(feed => feed._id !== id);
+            }
         }
     },
     extraReducers: (builder) => {
@@ -46,5 +54,5 @@ const feedSlice = createSlice({
     }
 });
 
-export const { setPage } = feedSlice.actions;
+export const { setPage, removeFeedRequestById } = feedSlice.actions;
 export default feedSlice.reducer;

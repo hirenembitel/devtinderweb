@@ -8,6 +8,7 @@ import { clearUser } from '../utils/userSlice.js';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
+  console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async(e) => {
@@ -21,7 +22,7 @@ const NavBar = () => {
       alert('Logout failed. Please try again.');
     }
   }
-
+  const isUserLoggedIn = !!(user && Object.keys(user).length > 0);
   return (
     <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
@@ -31,9 +32,11 @@ const NavBar = () => {
           <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
 
           <div className="dropdown dropdown-end">
-            {user && (
+            {isUserLoggedIn && (
               <>
                 <label>Welcome, {user.firstname}&nbsp;&nbsp;</label>
+              </>  
+            )}    
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
@@ -42,13 +45,20 @@ const NavBar = () => {
                     />
                   </div>
                 </div>
-              </>
-            )}
+             {!isUserLoggedIn && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              {!user && (<li><Link to="/login">Login</Link></li>)}
-              {user && (
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">              
+              <>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/signup">Signup</Link></li>
+              </>            
+            </ul>
+            )}
+            {isUserLoggedIn && (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"> 
                 <>
                   <li>
                     <Link to="/profile" className="justify-between">
@@ -60,8 +70,8 @@ const NavBar = () => {
                   <li><Link to="/requests">Requests</Link></li>
                   <li><a onClick={handleLogout}>Logout</a></li>
                 </>
-              )}
             </ul>
+             )}
           </div>
         </div>
       </div>

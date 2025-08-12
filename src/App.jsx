@@ -8,6 +8,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import  appStore from './utils/appStore.js'; // Import the store from utils/appStore.js
 import Connections from './components/Connections.jsx';
 import Request from './components/Request.jsx';
+import Signup from './components/Signup.jsx';
 
 function App() {
   return (    
@@ -21,6 +22,7 @@ function App() {
           <Route path="profile" element={<EditProfile />} />
           <Route path='/connections' element={<Connections />} />
           <Route path='/requests' element={<Request />}/>
+          <Route path='/signup' element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>
