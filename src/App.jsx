@@ -9,6 +9,7 @@ import  appStore from './utils/appStore.js'; // Import the store from utils/appS
 import Connections from './components/Connections.jsx';
 import Request from './components/Request.jsx';
 import Signup from './components/Signup.jsx';
+import Chat from './components/Chat.jsx';
 
 function App() {
   return (    
@@ -23,6 +24,7 @@ function App() {
           <Route path='/connections' element={<Connections />} />
           <Route path='/requests' element={<Request />}/>
           <Route path='/signup' element={<Signup />} />
+          <Route path='/chat/:targetUserId' element={<Chat />} />
         </Route>
       </Routes>
     </BrowserRouter>

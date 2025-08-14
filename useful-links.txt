@@ -13,3 +13,16 @@ https://redux-toolkit.js.org/introduction/getting-started
 to create empty structure for react
 command name : rafce
  
+ FRONTEND GITHUB LINK
+ https://github.com/akshaymarch7/devTinder-web
+ 
+ Cloudflare is a web infrastructure and security company that provides services to make websites faster, more secure, and more reliable.
+
+Think of it as a protective and performance-boosting middle layer between your website and the internet users who visit it.
+
+
+ 
+ https://www.cloudflare.com/
+ 
+ AI TOOLS
+ https://coursiv.io/dynamic/selling-page?prc_id=1069&utm_source=google&utm_medium=cpc&utm_campaign=22886099226&utm_adgroupid=180727250101&utm_ad=769174770922&utm_type=demgen&utm_acc=1308143291&utm_alen=1&gad_source=2&gad_campaignid=22886099226&gclid=EAIaIQobChMI37XrtOiFjwMVCtHaBR0XXyh_EAEYASAAEgJA-PD_BwE&detected_locale=en&initial_locale=default&block=pathway-page&step=&tid=14490836&name=HK
