@@ -8,7 +8,7 @@ import { clearUser } from '../utils/userSlice.js';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
-  console.log(user);
+  //console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = async(e) => {

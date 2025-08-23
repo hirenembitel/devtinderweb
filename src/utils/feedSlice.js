@@ -29,7 +29,7 @@ const feedSlice = createSlice({
     reducers:{
         setPage(state, action) {
             state.page = action.payload;
-            console.log("called state page change");
+            //console.log("called state page change");
         },
         removeFeedRequestById(state,action) {
             const { page, id } = action.payload;

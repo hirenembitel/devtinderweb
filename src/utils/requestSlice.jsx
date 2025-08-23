@@ -10,7 +10,7 @@ export const updateRequestStatus = createAsyncThunk(
         {},
         { withCredentials:true }
       );
-      console.log(res.data);
+      //console.log(res.data);
       return { id, status: status };
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);

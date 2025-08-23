@@ -8,18 +8,18 @@ const UserCard = ({user}) => {
   const dispatch = useDispatch();
   let currentPage = useSelector((state) => state.feeds.page);
   currentPage = (currentPage) ? currentPage : 1;
-  //console.log("currentPage::"+currentPage);
+  ////console.log("currentPage::"+currentPage);
   const [isFading, setIsFading] = useState(false);
   const handSendRequest = async (status,feedId) => {
       try{
           const response = await axios.post(API_BASE_URL+"/request/send/"+status+'/'+feedId,{},{withCredentials:true});
-          console.log(response.data);
+          //console.log(response.data);
           if(response.data.valid) {        
             setIsFading(true); 
             dispatch(removeFeedRequestById({ page: currentPage, id: feedId }));            
           }          
       }catch(error) {
-        console.log(error.message);
+        //console.log(error.message);
       }    
     };
 const fadeOutStyle = {

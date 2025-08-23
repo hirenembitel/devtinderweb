@@ -6,7 +6,7 @@ const result = await axios.post('http://localhost:3000/logout', {}, {
     withCredentials: true, // Include cookies in the request
 })
     .then(response => {
-    console.log('Logout successful:', response.data);
+    //console.log('Logout successful:', response.data);
     alert('Logout successful!');
     // Handle successful logout (e.g., redirect to login)
     }).catch(error => {
@@ -14,7 +14,7 @@ const result = await axios.post('http://localhost:3000/logout', {}, {
         alert('Logout failed. Please try again.');
     });
     // Handle logout logic here
-    console.log('Logging out');
+    //console.log('Logging out');
     // You can add your logout logic here
 }
 

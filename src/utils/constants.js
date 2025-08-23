@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'http://localhost:3000'; // Base URL for API requests
+export const API_BASE_URL = 'http://192.168.1.224:3000'; // Base URL for API requests

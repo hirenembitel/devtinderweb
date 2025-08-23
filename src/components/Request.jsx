@@ -22,7 +22,7 @@ const Request = () => {
             const response = await axios.get(API_BASE_URL+'/user/requests/recieved', 
             {withCredentials:true}
             );
-           // console.log(response.data.requests);    
+           // //console.log(response.data.requests);    
             dispatch(addRequest(response.data.requests));
         }catch(error)  {
                 console.error("Error fetching connections:", error);
