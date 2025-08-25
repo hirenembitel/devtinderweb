@@ -5,14 +5,17 @@ import createSocketConnection  from '../utils/socket.js';
 import { useSelector } from "react-redux";
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/constants.js';
+import EmojiPicker from "emoji-picker-react";
 
 const Chat = () => {
+  const socketRef = useRef(null);
   const messagesEndRef = useRef(null);
   const { targetUserId } = useParams();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const user = useSelector((state) => state.user.user);  
   const userId = user?._id;
+  const [showPicker, setShowPicker] = useState(false);
  
   const chatMessages = async() => {    
       try {
@@ -42,12 +45,12 @@ useEffect(() => {
 
   useEffect(() => {
     if(!userId) {return;}
-    const socket = createSocketConnection();
+    socketRef.current = createSocketConnection();
     
    // //console.log("user details");
    // //console.log(JSON.stringify(user));
-    socket.emit("joinChat",{firstName:user.firstname,userId,targetUserId});
-    socket.on("messageReceived",({firstName,newMessageText}) => {
+    socketRef.current.emit("joinChat",{firstName:user.firstname,userId,targetUserId});
+    socketRef.current.on("messageReceived",({firstName,newMessageText}) => {
         ////console.log("messageReceived::"+firstName+'---'+newMessageText);
         setMessages((prevMessages) => [
         ...prevMessages,
@@ -55,15 +58,15 @@ useEffect(() => {
       ]);
     });
     return () => {
-      socket.disconnect();
+      socketRef.current.disconnect();
     };    
   },[userId,targetUserId]);
   const sendMessage = () => {
     if(!userId) {return;}
    // //console.log("called"+userId+'---'+targetUserId+'^^^'+newMessage);
    // setMessages.text = newMessage;
-    const socket = createSocketConnection();
-    socket.emit("sendMessage",{firstName:user.firstname,userId,targetUserId,newMessageText:newMessage});
+    //const socket = createSocketConnection();
+    socketRef.current.emit("sendMessage",{firstName:user.firstname,userId,targetUserId,newMessageText:newMessage});
     setNewMessage("");
   }
   
@@ -98,10 +101,22 @@ useEffect(() => {
           placeholder="Type a message..."
           className="flex-1 border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <button onClick={() => setShowPicker(!showPicker)} className="ml-2">
+          😀
+        </button>
         <button onClick={sendMessage} className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600">
           Send
         </button>
       </div>
+      {showPicker && (
+        <div className="absolute mt-2">
+          <EmojiPicker
+            onEmojiClick={(emojiData) => {
+              setNewMessage((prev) => prev + emojiData.emoji);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
